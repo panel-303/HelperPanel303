@@ -1,0 +1,201 @@
+
+<html>
+<head>
+<title>HelperPanel610 v4.0 - Pro Cyber Edition (40 Tools)</title>
+<HTA:APPLICATION ID="HelperPanel610" ICON="aww.ico" BORDER="thin" SCROLL="no" SINGLEINSTANCE="yes" WINDOWSTATE="normal" />
+<style>
+  body {
+    background-color: #070b14;
+    color: #00f3ff;
+    font-family: Consolas, monospace;
+    border: 2px solid #00f3ff;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+  }
+  h2 {
+    background-color: #00f3ff;
+    color: #070b14;
+    padding: 8px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .grid {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .grid td {
+    width: 25%;
+    padding: 3px;
+  }
+  button {
+    width: 100%;
+    padding: 8px 4px;
+    background-color: #0d1526;
+    color: #00f3ff;
+    border: 1px solid #008b99;
+    font-family: Consolas, monospace;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #00f3ff;
+    color: #070b14;
+    border-color: #ffffff;
+  }
+  .yt-btn {
+    border-color: #ff3333;
+    color: #ff6666;
+  }
+  .yt-btn:hover {
+    background-color: #ff3333;
+    color: #ffffff;
+  }
+  .warn-btn {
+    border-color: #ffaa00;
+    color: #ffcc44;
+  }
+  .warn-btn:hover {
+    background-color: #ffaa00;
+    color: #070b14;
+  }
+  .troll-btn {
+    border: 1px dashed #ff007f;
+    color: #ff4da6;
+  }
+  .troll-btn:hover {
+    background-color: #ff007f;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  #log-ekrani {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #04070d;
+    border: 1px solid #00a8b5;
+    color: #39ff14;
+    font-size: 11px;
+    text-align: left;
+  }
+</style>
+<script language="VBScript">
+  Sub Window_OnLoad
+    window.resizeTo 820, 520
+  End Sub
+
+  Sub LogYaz(mesaj)
+    document.getElementById("log-ekrani").innerHTML = "> [AKTIF] " & mesaj
+  End Sub
+
+  Sub KomutCalistir(komut, aciklama)
+    Call LogYaz(aciklama)
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run komut
+  End Sub
+
+  Sub TempTemizle()
+    Call LogYaz("Temp dosyalar temizleniyor...")
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "cmd.exe /c del /q /f /s %TEMP%\* & echo Temizlik Tamamlandi! & pause"
+  End Sub
+
+  Sub ExplorerYenile()
+    Call LogYaz("Explorer arayuzu yenileniyor...")
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "cmd.exe /c taskkill /f /im explorer.exe & start explorer.exe", 0
+  End Sub
+
+  Sub YenidenBaslat()
+    cevap = MsgBox("Bilgisayari simdi yeniden baslatmak istediginize emin misiniz?", 4 + 48, "HelperPanel610 Sistem Uyarisi")
+    If cevap = 6 Then
+      Set shell = CreateObject("WScript.Shell")
+      shell.Run "shutdown /r /t 0", 0
+    End If
+  End Sub
+
+  Sub GuvenliTroll()
+    Call LogYaz("TROLL MODU AKTIF - Sahte Hack Baslatildi!")
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "cmd.exe /c color 0C & title KRITIK UYARI & echo [!] SISTEM DOSYALARI TARANIYOR... & timeout /t 2 >nul & color 0A & echo [!] C SURUCUSU ERISIMI ACILDI... & timeout /t 2 >nul & exit"
+    mesajlar = Array( _
+      "Hata 404: Cok hizli tikladiniz!", _
+      "Sistem ele gecirildi... Saka saka, her sey yolunda!" _
+    )
+    For Each m In mesajlar
+      MsgBox m, 48, "HelperPanel610 Sistem Uyarisi"
+    Next
+    Call LogYaz("Troll modu tamamlandi, sistem normal.")
+  End Sub
+</script>
+</head>
+<body>
+  <h2>HelperPanel610 v4.0 - PRO CYBER EDITION (40 TOOLS)</h2>
+  <table class="grid">
+    <tr>
+      <td><button class="yt-btn" onclick="Call KomutCalistir('explorer.exe https://youtube.com', 'YouTube aciliyor')">1. YouTube Ac</button></td>
+      <td><button class="yt-btn" onclick="Call KomutCalistir('explorer.exe https://github.com', 'GitHub aciliyor')">2. GitHub Ac</button></td>
+      <td><button onclick="Call KomutCalistir('explorer.exe C:\', 'C Surucusu acildi')">3. C Surucusu</button></td>
+      <td><button onclick="Call KomutCalistir('explorer.exe shell:Downloads', 'Indirilenler acildi')">4. Indirilenler</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('explorer.exe shell:Personal', 'Belgeler acildi')">5. Belgelerim</button></td>
+      <td><button onclick="Call KomutCalistir('explorer.exe shell:Desktop', 'Masaustu klasoru acildi')">6. Masaustu Klasoru</button></td>
+      <td><button onclick="Call KomutCalistir('explorer.exe shell:AppData', 'AppData acildi')">7. AppData Klasoru</button></td>
+      <td><button onclick="Call KomutCalistir('explorer.exe shell:Startup', 'Baslangic klasoru acildi')">8. Startup Klasoru</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('cmd.exe', 'CMD baslatildi')">9. CMD Ac</button></td>
+      <td><button onclick="Call KomutCalistir('powershell.exe', 'PowerShell baslatildi')">10. PowerShell Ac</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k color 0B & tree C:\', 'Sistem agaci taraniyor')">11. Siber Tarama</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k driverquery', 'Suruculer listeleniyor')">12. Surucu Listesi</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k netstat -ano', 'Aktif portlar taraniyor')">13. Aktif Portlar</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k getmac /v', 'MAC adresleri listeleniyor')">14. MAC Adresleri</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k netsh wlan show profiles', 'Wi-Fi profilleri cekiliyor')">15. Wi-Fi Profilleri</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k ipconfig /all', 'IP yapilandirmasi acildi')">16. IP & Ag Bilgisi</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k ping google.com', 'Ping testi baslatildi')">17. Ping Testi</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k arp -a', 'ARP tablosu acildi')">18. ARP Onbellegi</button></td>
+      <td><button onclick="Call TempTemizle()">19. Temp Temizle</button></td>
+      <td><button onclick="Call KomutCalistir('cleanmgr.exe', 'Disk Temizleme acildi')">20. Disk Temizleme</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k ipconfig /flushdns', 'DNS onbellegi temizlendi')">21. DNS Onbellegi Sil</button></td>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k systeminfo', 'Sistem ozeti yukleniyor')">22. Sistem Ozeti</button></td>
+      <td><button onclick="Call KomutCalistir('dxdiag.exe', 'DirectX tani araci acildi')">23. DirectX (DxDiag)</button></td>
+      <td><button onclick="Call KomutCalistir('msinfo32.exe', 'Detayli sistem bilgisi acildi')">24. Sistem Bilgisi</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('cmd.exe /k tasklist', 'Calisan islemler listelendi')">25. Calisan Islemler</button></td>
+      <td><button onclick="Call KomutCalistir('devmgmt.msc', 'Aygit Yoneticisi acildi')">26. Aygit Yoneticisi</button></td>
+      <td><button onclick="Call KomutCalistir('diskmgmt.msc', 'Disk Yonetimi acildi')">27. Disk Yonetimi</button></td>
+      <td><button onclick="Call KomutCalistir('services.msc', 'Windows Hizmetleri acildi')">28. Hizmetler</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('regedit.exe', 'Kayit Defteri acildi')">29. Kayit Defteri</button></td>
+      <td><button onclick="Call KomutCalistir('control.exe', 'Denetim Masasi acildi')">30. Denetim Masasi</button></td>
+      <td><button onclick="Call KomutCalistir('control firewall.cpl', 'Guvenlik Duvari acildi')">31. Guvenlik Duvari</button></td>
+      <td><button onclick="Call KomutCalistir('control ncpa.cpl', 'Ag bagdastiricilari acildi')">32. Ag Baglantilari</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('explorer.exe ms-settings:', 'Windows Ayarlari acildi')">33. Win Ayarlari</button></td>
+      <td><button onclick="Call KomutCalistir('calc.exe', 'Hesap Makinesi acildi')">34. Hesap Makinesi</button></td>
+      <td><button onclick="Call KomutCalistir('taskmgr.exe', 'Gorev Yoneticisi acildi')">35. Gorev Yoneticisi</button></td>
+      <td><button onclick="Call KomutCalistir('notepad.exe', 'Not Defteri acildi')">36. Not Defteri</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="Call KomutCalistir('snippingtool.exe', 'Ekran Alintisi Araci acildi')">37. Ekran Alintisi</button></td>
+      <td><button class="warn-btn" onclick="Call ExplorerYenile()">38. Explorer Yenile</button></td>
+      <td><button class="warn-btn" onclick="Call YenidenBaslat()">39. Yeniden Baslat</button></td>
+      <td><button class="troll-btn" onclick="Call GuvenliTroll()">40. Guvenli Troll</button></td>
+    </tr>
+  </table>
+  <div id="log-ekrani">> [HAZIR] HelperPanel610 v4.0 baslatildi. Bir arac secin...</div>
+</body>
+</html>
